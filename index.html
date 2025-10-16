@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Galactic Breakout — PWA</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <meta name="theme-color" content="#0b1020">
+  <link rel="icon" href="./icons/icon-192.png">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="bar">
+    <h1>Galactic Breakout</h1>
+    <button id="btnInstall" hidden>Install</button>
+  </header>
+
+  <main class="wrap">
+    <canvas id="screen" width="800" height="600" aria-label="game screen"></canvas>
+    <section class="panel">
+      <div class="row">
+        <button id="btnStart">Start</button>
+        <button id="btnPause">Pause</button>
+        <button id="btnReset">Reset</button>
+      </div>
+      <p class="muted">Keyboard: ←→ move · Space launch · P pause · R reset</p>
+    </section>
+  </main>
+
+  <!-- Touch controls -->
+  <div class="touch" aria-hidden="true">
+    <button class="pad left"  data-dir="-1">◀︎</button>
+    <button class="pad right" data-dir="1">▶︎</button>
+    <button class="pad action" id="btnAction">●</button>
+  </div>
+
+  <script src="./app.js"></script>
+  <script>
+    // Register service worker for offline
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./sw.js').catch(console.error);
+    }
+  </script>
+</body>
+</html>
